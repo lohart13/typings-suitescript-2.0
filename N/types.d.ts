@@ -524,6 +524,24 @@ export namespace EntryPoints {
 
         type executeAction = (scriptContext: executeActionContext) => void;
     }
+
+    namespace EventSubscriber {
+        interface handleContext {
+            context: {
+                /** The record type ID of the record that triggered the event. */
+                recordType: Uppercase<N_record.Type>;
+            }
+            payload: {
+                /** Internal ID of the record that triggered the event. */
+                recordId: number;
+            }
+        }
+
+        /**
+         * Defines the function that handles a subscribed event.
+         */
+        type handle = (scriptContext: handleContext) => void;
+    }
 }
 
 interface IKeyValuePair {
